@@ -5,24 +5,25 @@ import java.util.ArrayList;
 
 public class DBHospital {
 
-    /* public static void conectar() {
+    public static Connection conectar() {
+        Connection con = null;
         try {
 
             String url = "jdbc:mysql://localhost:3306/Hospitales";
             String username = "admin";
             String password = "ausias";
 
-            Connection connection = DriverManager.getConnection(url, username, password);
+            con = DriverManager.getConnection(url, username, password);
         } catch (SQLException ex) {
             System.out.println(ex);
         }
+        return con;
+    }
 
-    }*/
     public void añadirHospital(Hospital h) {
 
         //Statement stm = null;
         //Connection con = null;
-
         String sql = "INSERT INTO hospitales (nombre, direccion, localidad, telefono) VALUES ('" + h.getNombre() + "', '" + h.getDireccion() + "','" + h.getLocalidad() + "','" + h.getTelefono() + "')";
         /*String sql = "INSERT INTO hospitales (nombre, direccion, localidad, telefono) VALUES ('";
         sql += h.getNombre();
@@ -33,7 +34,7 @@ public class DBHospital {
         sql += "','";
         sql += h.getTelefono();
         sql += "')";*/
-        
+
         try {
             Connection con = Conexion.conectar();
             Statement stm = con.createStatement();
