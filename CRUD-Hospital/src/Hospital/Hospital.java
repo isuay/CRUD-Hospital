@@ -1,8 +1,9 @@
 package Hospital;
 
 public class Hospital {
-    
-    private final int id;
+
+    private int id;
+
     private String nombre;
     private String direccion;
     private String telefono;
@@ -15,9 +16,17 @@ public class Hospital {
         this.telefono = telefono;
         this.localidad = localidad;
     }
+    
+     public Hospital() {
+       
+    }
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -51,5 +60,5 @@ public class Hospital {
     public void setLocalidad(String localidad) {
         this.localidad = localidad;
     }
-    
+
 }
