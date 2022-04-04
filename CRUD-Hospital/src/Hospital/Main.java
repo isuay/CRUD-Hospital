@@ -1,13 +1,13 @@
 package Hospital;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
     public static void menu() {
 
-        System.out.println("1. Cambiar nombre"
+        System.out.println("---------MENU---------"
+                + "\n1. Cambiar nombre"
                 + "\n2. Cambiar direccion"
                 + "\n3. Cambiar telefono"
                 + "\n4. Cambiar localidad"
@@ -38,76 +38,77 @@ public class Main {
 
             switch (opcion) {
                 case 1:
-                    System.out.println("Diga el id del hospital que desea cambiar");
+                    System.out.print("Diga el id del hospital que desea cambiar: ");
                     id = in.nextInt();
-                    System.out.println("Diga el nombre que desea usar");
+                    System.out.print("Diga el nombre que desea usar: ");
                     r = in.nextLine();
                     h.setId(id);
                     h.setNombre(r);
                     db.actualizarNombreHospital(h);
                     break;
                 case 2:
-                    System.out.println("Diga el id del hospital que desea cambiar");
+                    System.out.print("Diga el id del hospital que desea cambiar: ");
                     id = in.nextInt();
-                    System.out.println("Diga el dirección que desea usar");
+                    System.out.print("Diga el dirección que desea usar: ");
                     r = in.nextLine();
                     h.setId(id);
                     h.setDireccion(r);
                     db.actualizarDireccionHospital(h);
                     break;
                 case 3:
-                    System.out.println("Diga el id del hospital que desea cambiar");
+                    System.out.print("Diga el id del hospital que desea cambiar: ");
                     id = in.nextInt();
-                    System.out.println("Diga el telefono que desea usar");
+                    System.out.print("Diga el telefono que desea usar: ");
                     r = in.nextLine();
                     h.setId(id);
                     h.setTelefono(r);
                     db.actualizarTelefonoHospital(h);
                     break;
                 case 4:
-                    System.out.println("Diga el id del hospital que desea cambiar");
+                    System.out.print("Diga el id del hospital que desea cambiar: ");
                     id = in.nextInt();
-                    System.out.println("Diga la Localidad que desea usar");
+                    System.out.print("Diga la localidad que desea usar: ");
                     r = in.nextLine();
                     h.setId(id);
                     h.setLocalidad(r);
                     db.actualizarLocalidadHospital(h);
                     break;
                 case 5:
-                    System.out.println("Diga el id del hospital que desea cambiar");
+                    System.out.print("Diga el id del hospital que desea cambiar: ");
                     id = in.nextInt();
-                    System.out.println("Diga el nombre que desea usar");
+                    System.out.print("Diga el nombre que desea usar: ");
                     r = in.nextLine();
                     h.setNombre(r);
-                    System.out.println("Diga la dirección que desea usar");
+                    System.out.print("Diga la dirección que desea usar: ");
                     r = in.nextLine();
                     h.setDireccion(r);
-                    System.out.println("Diga el telefono que desea usar");
+                    System.out.print("Diga el telefono que desea usar: ");
                     r = in.nextLine();
                     h.setTelefono(r);
-                    System.out.println("Diga la Localidad que desea usar");
+                    System.out.print("Diga la localidad que desea usar: ");
                     r = in.nextLine();
                     h.setLocalidad(r);
                     h.setId(id);
                     db.actualizarHospital(h);
                     break;
                 case 6:
-                    System.out.println("Diga el nombre que desea usar");
+                    in.nextLine();
+                    System.out.print("Diga el nombre que desea usar: ");
                     r = in.nextLine();
                     h.setNombre(r);
-                    System.out.println("Diga la dirección que desea usar");
+                    System.out.print("Diga la dirección que desea usar: ");
                     r = in.nextLine();
                     h.setDireccion(r);
-                    System.out.println("Diga el telefono que desea usar");
+                    System.out.print("Diga el telefono que desea usar: ");
                     r = in.nextLine();
                     h.setTelefono(r);
-                    System.out.println("Diga la Localidad que desea usar");
+                    System.out.print("Diga la localidad que desea usar: ");
                     r = in.nextLine();
                     h.setLocalidad(r);
                     db.añadirHospital(h);
                     break;
                 case 7:
-                    System.out.println("Diga el id del hospital que desea cambiar");
+                    System.out.print("Diga el id del hospital que desea cambiar: ");
                     id = in.nextInt();
                     h.setId(id);
                     db.eliminarHospital(h);

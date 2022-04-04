@@ -19,16 +19,24 @@ public class DBHospital {
 
     }*/
     public void añadirHospital(Hospital h) {
-        boolean registrar = false;
 
-        Statement stm = null;
-        Connection con = null;
+        //Statement stm = null;
+        //Connection con = null;
 
-        String sql = "INSERT INTO Hospital VALUES (NULL,'" + h.getNombre() + "', '" + h.getDireccion() + "','" + h.getLocalidad() + "','" + h.getTelefono() + "')";
-
+        String sql = "INSERT INTO hospitales (nombre, direccion, localidad, telefono) VALUES ('" + h.getNombre() + "', '" + h.getDireccion() + "','" + h.getLocalidad() + "','" + h.getTelefono() + "')";
+        /*String sql = "INSERT INTO hospitales (nombre, direccion, localidad, telefono) VALUES ('";
+        sql += h.getNombre();
+        sql += "', '";
+        sql += h.getDireccion();
+        sql += "','";
+        sql += h.getLocalidad();
+        sql += "','";
+        sql += h.getTelefono();
+        sql += "')";*/
+        
         try {
-            con = Conexion.conectar();
-            stm = con.createStatement();
+            Connection con = Conexion.conectar();
+            Statement stm = con.createStatement();
 
             stm.execute(sql);
             stm.close();
@@ -44,7 +52,7 @@ public class DBHospital {
         Statement stm = null;
         Connection con = null;
 
-        String sql = "DELETE FROM Hospital WHERE id=" + h.getId();
+        String sql = "DELETE FROM hospitales WHERE id=" + h.getId();
 
         try {
             con = Conexion.conectar();
@@ -64,7 +72,7 @@ public class DBHospital {
         Statement stm = null;
         Connection con = null;
 
-        String sql = "UPDATE Hospital SET nombre='" + h.getNombre() + "',direccion='" + h.getDireccion() + "',localidad='" + h.getLocalidad() + "',telefono='" + h.getTelefono() + "'" + "WHERE id=" + h.getId();
+        String sql = "UPDATE hospitales SET nombre='" + h.getNombre() + "',direccion='" + h.getDireccion() + "',localidad='" + h.getLocalidad() + "',telefono='" + h.getTelefono() + "'" + "WHERE id=" + h.getId();
 
         try {
             con = Conexion.conectar();
@@ -84,7 +92,7 @@ public class DBHospital {
         Statement stm = null;
         Connection con = null;
 
-        String sql = "UPDATE Hospital SET nombre='" + h.getNombre() + "'" + "WHERE id=" + h.getId();
+        String sql = "UPDATE hospitales SET nombre='" + h.getNombre() + "'" + "WHERE id=" + h.getId();
 
         try {
             con = Conexion.conectar();
@@ -104,7 +112,7 @@ public class DBHospital {
         Statement stm = null;
         Connection con = null;
 
-        String sql = "UPDATE Hospital SET direccion='" + h.getDireccion() + "'" + "WHERE id=" + h.getId();
+        String sql = "UPDATE hospitales SET direccion='" + h.getDireccion() + "'" + "WHERE id=" + h.getId();
 
         try {
             con = Conexion.conectar();
@@ -124,7 +132,7 @@ public class DBHospital {
         Statement stm = null;
         Connection con = null;
 
-        String sql = "UPDATE Hospital SET localidad='" + h.getLocalidad() + "'" + "WHERE id=" + h.getId();
+        String sql = "UPDATE hospitales SET localidad='" + h.getLocalidad() + "'" + "WHERE id=" + h.getId();
 
         try {
             con = Conexion.conectar();
@@ -139,12 +147,11 @@ public class DBHospital {
     }
 
     public void actualizarTelefonoHospital(Hospital h) {
-        boolean registrar = false;
 
         Statement stm = null;
         Connection con = null;
 
-        String sql = "UPDATE Hospital SET telefono='" + h.getTelefono() + "'" + "WHERE id=" + h.getId();
+        String sql = "UPDATE hospitales SET telefono='" + h.getTelefono() + "'" + "WHERE id=" + h.getId();
 
         try {
             con = Conexion.conectar();
@@ -162,7 +169,7 @@ public class DBHospital {
         Connection co = null;
         Statement stm = null;
         ResultSet rs = null;
-        String sql = "SELECT * FROM CLIENTE ORDER BY ID";
+        String sql = "SELECT * FROM hospitales";
         ArrayList<Hospital> listaHospital = new ArrayList<Hospital>();
         try {
             co = Conexion.conectar();
@@ -170,11 +177,11 @@ public class DBHospital {
             rs = stm.executeQuery(sql);
             while (rs.next()) {
                 Hospital h = new Hospital();
-                h.setId(rs.getInt(1));
-                h.setNombre(rs.getString(2));
-                h.setDireccion(rs.getString(3));
-                h.setLocalidad(rs.getString(4));
-                h.setTelefono(rs.getString(5));
+                h.setId(rs.getInt(h.getId()));
+                h.setNombre(rs.getString(h.getNombre()));
+                h.setDireccion(rs.getString(h.getDireccion()));
+                h.setLocalidad(rs.getString(h.getLocalidad()));
+                h.setTelefono(rs.getString(h.getTelefono()));
                 listaHospital.add(h);
             }
             stm.close();
