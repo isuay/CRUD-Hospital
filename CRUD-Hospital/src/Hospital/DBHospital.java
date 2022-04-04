@@ -5,22 +5,16 @@ import java.util.ArrayList;
 
 public class DBHospital {
 
-    public static Connection conectar() {
-        Connection con = null;
-        try {
+    private static Connection connection;
+    private static final String URL = "jdbc:mysql://localhost:3306/Hospital";
+    private static final String USERNAME = "admin";
+    private static final String PASSWORD = "ausias";
 
-            String url = "jdbc:mysql://localhost:3306/Hospitales";
-            String username = "admin";
-            String password = "ausias";
-
-            con = DriverManager.getConnection(url, username, password);
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-        return con;
+    public static void conectar() throws SQLException {
+        connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
     }
 
-    public void añadirHospital(Hospital h) {
+    public void añadirHospital(Hospital h) throws SQLException {
 
         //Statement stm = null;
         //Connection con = null;
@@ -35,16 +29,12 @@ public class DBHospital {
         sql += h.getTelefono();
         sql += "')";*/
 
-        try {
-            Connection con = Conexion.conectar();
-            Statement stm = con.createStatement();
+        Statement stm = connection.createStatement();
+        stm.execute(sql);
 
-            stm.execute(sql);
-            stm.close();
-            con.close();
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
+        stm.close();
+        connection.close();
+
     }
 
     public void eliminarHospital(Hospital h) {
@@ -166,33 +156,35 @@ public class DBHospital {
         }
     }
 
-    public ArrayList<Hospital> obtener() {
-        Connection co = null;
-        Statement stm = null;
-        ResultSet rs = null;
+    public void obtener() throws SQLException {
+        //Connection co = null;
+        //Statement stm = null;
+        //ResultSet rs = null;
         String sql = "SELECT * FROM hospitales";
-        ArrayList<Hospital> listaHospital = new ArrayList<Hospital>();
-        try {
-            co = Conexion.conectar();
-            stm = co.createStatement();
-            rs = stm.executeQuery(sql);
-            while (rs.next()) {
-                Hospital h = new Hospital();
-                h.setId(rs.getInt(h.getId()));
-                h.setNombre(rs.getString(h.getNombre()));
-                h.setDireccion(rs.getString(h.getDireccion()));
-                h.setLocalidad(rs.getString(h.getLocalidad()));
-                h.setTelefono(rs.getString(h.getTelefono()));
-                listaHospital.add(h);
-            }
-            stm.close();
-            rs.close();
-            co.close();
-        } catch (SQLException e) {
-            System.out.println("Error: Clase ClienteDaoImple, método obtener");
-            e.printStackTrace();
+        //ArrayList<Hospital> listaHospital = new ArrayList<Hospital>();
+
+        Statement stm = connection.createStatement();
+        ResultSet rs = stm.executeQuery(sql);
+        while (rs.next()) {
+            Hospital h = new Hospital();
+            h.setId(rs.getInt("id"));
+            h.setNombre(rs.getString("nombre"));
+            h.setDireccion(rs.getString("direccion"));
+            h.setLocalidad(rs.getString("localidad"));
+            h.setTelefono(rs.getString("telefono"));
+            //listaHospital.add(h);
+            int id = rs.getInt("id");
+            String nombre = rs.getString("nombre");
+            String direccion = rs.getString("direccion");
+            String localidad = rs.getString("localidad");
+            String telefono = rs.getString("telefono");
+            System.out.println(String.format("%d. %s - %s - %s - %s", id, nombre, direccion, localidad, telefono));
         }
-        return listaHospital;
+        stm.close();
+        rs.close();
+        connection.close();
+
+        //return listaHospital;
     }
 
 }
