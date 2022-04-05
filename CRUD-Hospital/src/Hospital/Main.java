@@ -19,108 +19,112 @@ public class Main {
                 + "\n9. Salir");
     }
 
+    public static Hospital pedirId(Hospital h) {
+        Scanner in = new Scanner(System.in);
+        boolean bien = false;
+        int id = 0;
+        do {
+            try {
+                System.out.print("Diga el id del hospital que desea cambiar: ");
+                id = in.nextInt();
+                h.setId(id);
+                bien = true;
+            } catch (InputMismatchException e) {
+                System.err.println("Valor introducido incorrecto");
+                in.nextLine();
+            }
+        } while (bien == false);
+        return h;
+    }
+
+    public static String pedirString(String mensaje) {
+        Scanner in = new Scanner(System.in);
+
+        System.out.print(mensaje);
+        String r = in.nextLine();
+
+        return r;
+    }
+
+    public static Hospital pedirAllStrings(Hospital h) {
+        String r = pedirString("Diga el nombre que desea usar: ");
+        h.setNombre(r);
+        r = pedirString("Diga la dirección que desea usar: ");
+        h.setDireccion(r);
+        r = pedirString("Diga la localidad que desea usar: ");
+        h.setLocalidad(r);
+        r = pedirString("Diga el telefono que desea usar: ");
+        h.setTelefono(r);
+        
+        return h;
+    }
+
     public static void main(String[] args) {
         int opcion = 0;
         int id;
         String r;
-        
+
         Scanner in = new Scanner(System.in);
-        
+
         Hospital h = new Hospital();
-        DBHospital db = new DBHospital();
+        //DBHospital db = new DBHospital();
         ControllerHospital c = new ControllerHospital();
-        
+
         try {
             do {
                 menu();
                 System.out.print("Indique una opción: ");
                 opcion = in.nextInt();
+                c.conectar();
 
-                db.conectar();
                 switch (opcion) {
                     case 1:
-                        System.out.print("Diga el id del hospital que desea cambiar: ");
-                        id = in.nextInt();
-                        System.out.print("Diga el nombre que desea usar: ");
-                        r = in.nextLine();
-                        h.setId(id);
+                        h = pedirId(h);
+                        r = pedirString("Diga el nombre que desea usar: ");
+                        
                         h.setNombre(r);
-                        db.actualizarNombreHospital(h);
+                        c.actualizarNombreHospital(h);
                         break;
                     case 2:
-                        System.out.print("Diga el id del hospital que desea cambiar: ");
-                        id = in.nextInt();
-                        System.out.print("Diga el dirección que desea usar: ");
-                        r = in.nextLine();
-                        h.setId(id);
+                        h = pedirId(h);
+                        r = pedirString("Diga el dirección que desea usar: ");
                         h.setDireccion(r);
-                        db.actualizarDireccionHospital(h);
+                        c.actualizarDireccionHospital(h);
                         break;
                     case 3:
-                        System.out.print("Diga el id del hospital que desea cambiar: ");
-                        id = in.nextInt();
-                        System.out.print("Diga el telefono que desea usar: ");
-                        r = in.nextLine();
-                        h.setId(id);
+                        h = pedirId(h);
+                        r = pedirString("Diga el telefono que desea usar: ");
                         h.setTelefono(r);
-                        db.actualizarTelefonoHospital(h);
+                        c.actualizarTelefonoHospital(h);
                         break;
                     case 4:
-                        System.out.print("Diga el id del hospital que desea cambiar: ");
-                        id = in.nextInt();
-                        System.out.print("Diga la localidad que desea usar: ");
-                        r = in.nextLine();
-                        h.setId(id);
+                        h = pedirId(h);
+                        r = pedirString("Diga la localidad que desea usar: ");
                         h.setLocalidad(r);
-                        db.actualizarLocalidadHospital(h);
+                        c.actualizarLocalidadHospital(h);
                         break;
                     case 5:
-                        System.out.print("Diga el id del hospital que desea cambiar: ");
-                        id = in.nextInt();
-                        System.out.print("Diga el nombre que desea usar: ");
-                        r = in.nextLine();
-                        h.setNombre(r);
-                        System.out.print("Diga la dirección que desea usar: ");
-                        r = in.nextLine();
-                        h.setDireccion(r);
-                        System.out.print("Diga la localidad que desea usar: ");
-                        r = in.nextLine();
-                        h.setLocalidad(r);
-                        System.out.print("Diga el telefono que desea usar: ");
-                        r = in.nextLine();
-                        h.setTelefono(r);
-                        h.setId(id);
-                        db.actualizarHospital(h);
+                        h = pedirId(h);
+                        h = pedirAllStrings(h);
+                        c.actualizarHospital(h);
                         break;
                     case 6:
-                        in.nextLine();
-                        System.out.print("Diga el nombre que desea usar: ");
-                        r = in.nextLine();
-                        h.setNombre(r);
-                        System.out.print("Diga la dirección que desea usar: ");
-                        r = in.nextLine();
-                        h.setDireccion(r);
-                        System.out.print("Diga la localidad que desea usar: ");
-                        r = in.nextLine();
-                        h.setLocalidad(r);
-                        System.out.print("Diga el telefono que desea usar: ");
-                        r = in.nextLine();
-                        h.setTelefono(r);
-                        db.añadirHospital(h);
+                        h = pedirAllStrings(h);
+                        c.añadirHospital(h);
                         break;
                     case 7:
-                        System.out.print("Diga el id del hospital que desea cambiar: ");
-                        id = in.nextInt();
-                        h.setId(id);
-                        db.eliminarHospital(h);
+                        h = pedirId(h);
+                        c.eliminarHospital(h);
                         break;
                     case 8:
-                        db.obtener();
+                        //db.obtener();
                         break;
                 }
             } while (opcion != 9);
         } catch (SQLException ex) {
             System.out.println(ex);
+        } catch (Exception e) {
+            System.err.println(e);
         }
     }
 
