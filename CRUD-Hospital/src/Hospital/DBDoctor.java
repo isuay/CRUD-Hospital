@@ -14,7 +14,7 @@ public class DBDoctor {
     }
 
     public void añadirDoctor(Doctor d) throws SQLException {
-        String sql = "INSERT INTO doctores (nombre, direccion, localidad, telefono) VALUES ('" + d.getNombre() + "', '" + d.getTelefono() + "','" + d.getId_hospital()+ "','" + d.getEspecialidad() + "','" + d.getFechaNac() + "')";
+        String sql = "INSERT INTO doctores (nombre, direccion, localidad, telefono) VALUES ('" + d.getNombre() + "', '" + d.getTelefono() + "','" + d.getIdHospital()+ "','" + d.getEspecialidad() + "','" + d.getFechaNac() + "')";
 
         Statement stm = connection.createStatement();
         stm.execute(sql);
@@ -44,7 +44,7 @@ public class DBDoctor {
     }
 
     public void actualizarID_hospi(Doctor d) throws SQLException {
-        String sql = "UPDATE doctores SET id_hospital='" + d.getId_hospital() + "'" + "WHERE id=" + d.getId();
+        String sql = "UPDATE doctores SET id_hospital='" + d.getIdHospital() + "'" + "WHERE id=" + d.getId();
 
         Statement stm = connection.createStatement();
         stm.execute(sql);

@@ -7,15 +7,15 @@ public class Doctor {
     private int id;
     private String nombre;
     private String telefono;
-    private int id_hospital;
+    private int idHospital;
     private String especialidad;
     private Date fechaNac;
 
-    public Doctor(int id, String nombre, String telefono, int id_hospital, String especialidad, Date fechaNac) {
+    public Doctor(int id, String nombre, String telefono, int idHospital, String especialidad, Date fechaNac) {
         this.id = id;
         this.nombre = nombre;
         this.telefono = telefono;
-        this.id_hospital = id_hospital;
+        this.idHospital = idHospital;
         this.especialidad = especialidad;
         this.fechaNac = fechaNac;
     }
@@ -35,8 +35,8 @@ public class Doctor {
         return telefono;
     }
 
-    public int getId_hospital() {
-        return id_hospital;
+    public int getIdHospital() {
+        return idHospital;
     }
 
     public String getEspecialidad() {
@@ -55,8 +55,8 @@ public class Doctor {
         this.telefono = telefono;
     }
 
-    public void setId_hospital(int id_hospital) {
-        this.id_hospital = id_hospital;
+    public void setIdHospital(int idHospital) {
+        this.idHospital = idHospital;
     }
 
     public void setEspecialidad(String especialidad) {
