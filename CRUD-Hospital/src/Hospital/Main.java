@@ -1,6 +1,5 @@
 package Hospital;
 
-import java.sql.*;
 import java.util.*;
 
 public class Main {

@@ -1,7 +1,6 @@
 package Hospital;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class ControllerDoctor {
 
@@ -46,7 +45,6 @@ public class ControllerDoctor {
     public void verDoctores() throws SQLException {
         DBDoctor db = new DBDoctor();
         db.obtener();
-        
     }
 
 }

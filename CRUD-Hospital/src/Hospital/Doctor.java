@@ -1,7 +1,5 @@
 package Hospital;
 
-import java.util.Date;
-
 public class Doctor {
     
     private int id;

@@ -44,7 +44,7 @@ public class DBDoctor {
     }
 
     public void actualizarID_hospi(Doctor d) throws SQLException {
-        String sql = "UPDATE doctores SET id_hospital='" + d.getIdHospital() + "'" + "WHERE id=" + d.getId();
+        String sql = "UPDATE doctores SET idHospital='" + d.getIdHospital() + "'" + "WHERE id=" + d.getId();
 
         Statement stm = connection.createStatement();
         stm.execute(sql);
@@ -81,11 +81,11 @@ public class DBDoctor {
         while (rs.next()) {
             int id = rs.getInt("id");
             String nombre = rs.getString("nombre");
-            int id_hospital = rs.getInt("id_hospital");
+            int idHospital = rs.getInt("idHospital");
             String especialidad = rs.getString("especialidad");
             String telefono = rs.getString("telefono");
             String fechaNac = rs.getString("fechaNac"); 
-            System.out.println(String.format("%d. %s - %s - %s - %s - %d", id, nombre, telefono, fechaNac, especialidad, id_hospital));
+            System.out.println(String.format("%d. %s - %s - %s - %s - %d", id, nombre, telefono, fechaNac, especialidad, idHospital));
         }
         stm.close();
         rs.close();

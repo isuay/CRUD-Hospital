@@ -1,7 +1,6 @@
 package Hospital;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 
 public class PedirDatos {
 
