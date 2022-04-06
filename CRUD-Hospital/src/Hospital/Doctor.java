@@ -9,9 +9,9 @@ public class Doctor {
     private String telefono;
     private int idHospital;
     private String especialidad;
-    private Date fechaNac;
+    private String fechaNac;
 
-    public Doctor(int id, String nombre, String telefono, int idHospital, String especialidad, Date fechaNac) {
+    public Doctor(int id, String nombre, String telefono, int idHospital, String especialidad, String fechaNac) {
         this.id = id;
         this.nombre = nombre;
         this.telefono = telefono;
@@ -63,11 +63,11 @@ public class Doctor {
         this.especialidad = especialidad;
     }
 
-    public Date getFechaNac() {
+    public String getFechaNac() {
         return fechaNac;
     }
 
-    public void setFechaNac(Date fechaNac) {
+    public void setFechaNac(String fechaNac) {
         this.fechaNac = fechaNac;
     }
 

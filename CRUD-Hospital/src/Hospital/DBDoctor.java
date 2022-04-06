@@ -81,11 +81,11 @@ public class DBDoctor {
         while (rs.next()) {
             int id = rs.getInt("id");
             String nombre = rs.getString("nombre");
-            String id_hospital = rs.getString("id_hospital");
+            int id_hospital = rs.getInt("id_hospital");
             String especialidad = rs.getString("especialidad");
             String telefono = rs.getString("telefono");
-            Date fechaNac = rs.getDate("fechaNac"); 
-            System.out.println(String.format("%d. %s - %s - %s - %s - %s", id, nombre, id_hospital, especialidad, telefono, fechaNac));
+            String fechaNac = rs.getString("fechaNac"); 
+            System.out.println(String.format("%d. %s - %s - %s - %s - %d", id, nombre, telefono, fechaNac, especialidad, id_hospital));
         }
         stm.close();
         rs.close();
