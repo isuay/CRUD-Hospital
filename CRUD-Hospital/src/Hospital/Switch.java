@@ -18,10 +18,10 @@ public class Switch {
         DBHospital db = new DBHospital();
         try {
             do {
+                Conexion.conectar();
                 Menus.menuHospital();
                 System.out.print("Indique una opción: ");
                 opcion = in.nextInt();
-                db.conectar();
 
                 switch (opcion) {
                     case 1:
@@ -89,7 +89,7 @@ public class Switch {
         DBDoctor db = new DBDoctor();
         try {
             do {
-                db.conectar();
+                Conexion.conectar();
                 Menus.menuDoctor();
                 System.out.print("Indique una opción: ");
                 opcion = in.nextInt();

@@ -4,20 +4,12 @@ import java.sql.*;
 
 public class DBDoctor {
     
-    private static Connection connection;
-    private static final String URL = "jdbc:mysql://localhost:3306/Hospital";
-    private static final String USERNAME = "admin";
-    private static final String PASSWORD = "ausias";
-    
     private static final String WHERE_ID = "WHERE id=";
-
-    public static void conectar() throws SQLException {
-        connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-    }
 
     public void añadirDoctor(Doctor d) throws SQLException {
         String sql = "INSERT INTO doctores (nombre, fechaNac, telefono, especialidad, idHospital) VALUES ('" + d.getNombre() + "', '" + d.getFechaNac()+ "', '" + d.getTelefono()+ "', '" + d.getEspecialidad() + "', " + d.getIdHospital()+ ")";
 
+        Connection connection = Conexion.conectar();
         Statement stm = connection.createStatement();
         stm.execute(sql);
 
@@ -28,6 +20,7 @@ public class DBDoctor {
     public void eliminarDoctor(Doctor d) throws SQLException {
         String sql = "DELETE FROM doctores WHERE id=" + d.getId();
 
+        Connection connection = Conexion.conectar();
         Statement stm = connection.createStatement();
         stm.execute(sql);
 
@@ -38,6 +31,7 @@ public class DBDoctor {
     public void actualizarNombreDoctor(Doctor d) throws SQLException {
         String sql = "UPDATE doctores SET nombre='" + d.getNombre() + "'" + WHERE_ID + d.getId();
 
+        Connection connection = Conexion.conectar();
         Statement stm = connection.createStatement();
         stm.execute(sql);
 
@@ -48,6 +42,7 @@ public class DBDoctor {
     public void actualizarIDHospital(Doctor d) throws SQLException {
         String sql = "UPDATE doctores SET idHospital='" + d.getIdHospital() + "'" + WHERE_ID + d.getId();
 
+        Connection connection = Conexion.conectar();
         Statement stm = connection.createStatement();
         stm.execute(sql);
 
@@ -58,6 +53,7 @@ public class DBDoctor {
     public void actualizarTelefonoDoctor(Doctor d) throws SQLException {
         String sql = "UPDATE doctores SET telefono='" + d.getTelefono()+ "'" + WHERE_ID + d.getId();
 
+        Connection connection = Conexion.conectar();
         Statement stm = connection.createStatement();
         stm.execute(sql);
 
@@ -68,6 +64,7 @@ public class DBDoctor {
     public void actualizarEspecialidad(Doctor d) throws SQLException {
         String sql = "UPDATE doctores SET especialidad='" + d.getEspecialidad() + "'" + WHERE_ID + d.getId();
 
+        Connection connection = Conexion.conectar();
         Statement stm = connection.createStatement();
         stm.execute(sql);
 
@@ -78,6 +75,7 @@ public class DBDoctor {
     public void obtener() throws SQLException {
         String sql = "SELECT * FROM doctores";
         
+        Connection connection = Conexion.conectar();
         Statement stm = connection.createStatement();
         ResultSet rs = stm.executeQuery(sql);
         while (rs.next()) {
@@ -93,7 +91,4 @@ public class DBDoctor {
         rs.close();
         connection.close();
     }
-
 }
-
-
