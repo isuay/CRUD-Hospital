@@ -8,13 +8,15 @@ public class DBDoctor {
     private static final String URL = "jdbc:mysql://localhost:3306/Hospital";
     private static final String USERNAME = "admin";
     private static final String PASSWORD = "ausias";
+    
+    private static final String WHERE_ID = "WHERE id=";
 
     public static void conectar() throws SQLException {
         connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
     }
 
     public void añadirDoctor(Doctor d) throws SQLException {
-        String sql = "INSERT INTO doctores (nombre, direccion, localidad, telefono) VALUES ('" + d.getNombre() + "', '" + d.getTelefono() + "','" + d.getIdHospital()+ "','" + d.getEspecialidad() + "','" + d.getFechaNac() + "')";
+        String sql = "INSERT INTO doctores (nombre, fechaNac, telefono, especialidad, idHospital) VALUES ('" + d.getNombre() + "', '" + d.getFechaNac()+ "', '" + d.getTelefono()+ "', '" + d.getEspecialidad() + "', " + d.getIdHospital()+ ")";
 
         Statement stm = connection.createStatement();
         stm.execute(sql);
@@ -34,7 +36,7 @@ public class DBDoctor {
     }
 
     public void actualizarNombreDoctor(Doctor d) throws SQLException {
-        String sql = "UPDATE hospitales SET nombre='" + d.getNombre() + "WHERE id=" + d.getId();
+        String sql = "UPDATE doctores SET nombre='" + d.getNombre() + "'" + WHERE_ID + d.getId();
 
         Statement stm = connection.createStatement();
         stm.execute(sql);
@@ -43,8 +45,8 @@ public class DBDoctor {
         connection.close();
     }
 
-    public void actualizarID_hospi(Doctor d) throws SQLException {
-        String sql = "UPDATE doctores SET idHospital='" + d.getIdHospital() + "'" + "WHERE id=" + d.getId();
+    public void actualizarIDHospital(Doctor d) throws SQLException {
+        String sql = "UPDATE doctores SET idHospital='" + d.getIdHospital() + "'" + WHERE_ID + d.getId();
 
         Statement stm = connection.createStatement();
         stm.execute(sql);
@@ -54,7 +56,7 @@ public class DBDoctor {
     }
 
     public void actualizarTelefonoDoctor(Doctor d) throws SQLException {
-        String sql = "UPDATE doctores SET telefono='" + d.getTelefono()+ "'" + "WHERE id=" + d.getId();
+        String sql = "UPDATE doctores SET telefono='" + d.getTelefono()+ "'" + WHERE_ID + d.getId();
 
         Statement stm = connection.createStatement();
         stm.execute(sql);
@@ -64,7 +66,7 @@ public class DBDoctor {
     }
 
     public void actualizarEspecialidad(Doctor d) throws SQLException {
-        String sql = "UPDATE doctores SET especialidad='" + d.getEspecialidad() + "'" + "WHERE id=" + d.getId();
+        String sql = "UPDATE doctores SET especialidad='" + d.getEspecialidad() + "'" + WHERE_ID + d.getId();
 
         Statement stm = connection.createStatement();
         stm.execute(sql);

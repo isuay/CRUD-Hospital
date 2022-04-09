@@ -67,9 +67,5 @@ public class Doctor {
 
     public void setFechaNac(String fechaNac) {
         this.fechaNac = fechaNac;
-    }
-
-    
-    
-    
+    }   
 }

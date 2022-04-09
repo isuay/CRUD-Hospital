@@ -18,6 +18,9 @@ public class Main {
                 case 2:
                     Switch.switchDoctor();
                     break;
+                default:
+                    System.out.println("Hasta la próxima");
+                    break;
             }
         } while (opcion != 3);
     }

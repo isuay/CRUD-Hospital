@@ -3,22 +3,20 @@ package Hospital;
 public class Hospital {
 
     private int id;
-
     private String nombre;
     private String direccion;
-    private String telefono;
     private String localidad;
+    private String telefono;
 
-    public Hospital(int id, String nombre, String direccion, String telefono, String localidad) {
+    public Hospital(int id, String nombre, String direccion, String localidad, String telefono) {
         this.id = id;
         this.nombre = nombre;
         this.direccion = direccion;
-        this.telefono = telefono;
         this.localidad = localidad;
+        this.telefono = telefono;
     }
-    
-     public Hospital() {
-       
+
+    public Hospital() {
     }
 
     public int getId() {
@@ -45,14 +43,6 @@ public class Hospital {
         this.direccion = direccion;
     }
 
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
     public String getLocalidad() {
         return localidad;
     }
@@ -61,4 +51,11 @@ public class Hospital {
         this.localidad = localidad;
     }
 
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
 }

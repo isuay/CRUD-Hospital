@@ -4,6 +4,9 @@ import java.util.*;
 
 public class PedirDatos {
 
+    private PedirDatos() {
+    }
+
     public static int pedirId() {
         Scanner in = new Scanner(System.in);
         boolean bien = false;
@@ -17,7 +20,7 @@ public class PedirDatos {
                 System.err.println("Valor introducido incorrecto");
                 in.nextLine();
             }
-        } while (bien == false);
+        } while (!bien);
         return id;
     }
 
@@ -25,13 +28,12 @@ public class PedirDatos {
         Scanner in = new Scanner(System.in);
 
         System.out.print(mensaje);
-        String r = in.nextLine();
-
-        return r;
+        return in.nextLine();
     }
 
     public static Hospital pedirAllStrings(Hospital h) {
-        String r = pedirString("Diga el nombre que desea usar: ");
+        String r;
+        r = pedirString("Diga el nombre que desea usar: ");
         h.setNombre(r);
         r = pedirString("Diga la dirección que desea usar: ");
         h.setDireccion(r);
@@ -51,8 +53,8 @@ public class PedirDatos {
         r = pedirString("Diga la especialidad que desea usar: ");
         d.setEspecialidad(r);
         r = pedirString("Diga el id del hospital que desea usar: ");
-        int id_hospital = Integer.parseInt(r);
-        d.setIdHospital(id_hospital);
+        int idHospital = Integer.parseInt(r);
+        d.setIdHospital(idHospital);
         r = pedirString("Diga la fecha de nacimiento que desea usar (aaaa/mm/dd): ");
         d.setFechaNac(r);
 

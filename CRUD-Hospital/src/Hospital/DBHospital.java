@@ -8,6 +8,8 @@ public class DBHospital {
     private static final String URL = "jdbc:mysql://localhost:3306/Hospital";
     private static final String USERNAME = "admin";
     private static final String PASSWORD = "ausias";
+    
+    private static final String WHERE_ID = "WHERE id=";
 
     public static void conectar() throws SQLException {
         connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
@@ -34,7 +36,7 @@ public class DBHospital {
     }
 
     public void actualizarHospital(Hospital h) throws SQLException {
-        String sql = "UPDATE hospitales SET nombre='" + h.getNombre() + "',direccion='" + h.getDireccion() + "',localidad='" + h.getLocalidad() + "',telefono='" + h.getTelefono() + "'" + "WHERE id=" + h.getId();
+        String sql = "UPDATE hospitales SET nombre='" + h.getNombre() + "',direccion='" + h.getDireccion() + "',localidad='" + h.getLocalidad() + "',telefono='" + h.getTelefono() + "'" + WHERE_ID + h.getId();
 
         Statement stm = connection.createStatement();
         stm.execute(sql);
@@ -44,7 +46,7 @@ public class DBHospital {
     }
 
     public void actualizarNombreHospital(Hospital h) throws SQLException {
-        String sql = "UPDATE hospitales SET nombre='" + h.getNombre() + "'" + "WHERE id=" + h.getId();
+        String sql = "UPDATE hospitales SET nombre='" + h.getNombre() + "'" + WHERE_ID + h.getId();
 
         Statement stm = connection.createStatement();
         stm.execute(sql);
@@ -54,7 +56,7 @@ public class DBHospital {
     }
 
     public void actualizarDireccionHospital(Hospital h) throws SQLException {
-        String sql = "UPDATE hospitales SET direccion='" + h.getDireccion() + "'" + "WHERE id=" + h.getId();
+        String sql = "UPDATE hospitales SET direccion='" + h.getDireccion() + "'" + WHERE_ID + h.getId();
 
         Statement stm = connection.createStatement();
         stm.execute(sql);
@@ -64,7 +66,7 @@ public class DBHospital {
     }
 
     public void actualizarLocalidadHospital(Hospital h) throws SQLException {
-        String sql = "UPDATE hospitales SET localidad='" + h.getLocalidad() + "'" + "WHERE id=" + h.getId();
+        String sql = "UPDATE hospitales SET localidad='" + h.getLocalidad() + "'" + WHERE_ID + h.getId();
 
         Statement stm = connection.createStatement();
         stm.execute(sql);
@@ -74,7 +76,7 @@ public class DBHospital {
     }
 
     public void actualizarTelefonoHospital(Hospital h) throws SQLException {
-        String sql = "UPDATE hospitales SET telefono='" + h.getTelefono() + "'" + "WHERE id=" + h.getId();
+        String sql = "UPDATE hospitales SET telefono='" + h.getTelefono() + "'" + WHERE_ID + h.getId();
 
         Statement stm = connection.createStatement();
         stm.execute(sql);

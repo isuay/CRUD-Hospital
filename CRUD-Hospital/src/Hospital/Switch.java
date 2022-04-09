@@ -5,6 +5,9 @@ import java.util.Scanner;
 
 public class Switch {
 
+    private Switch() {
+    }
+
     public static void switchHospital() {
         int opcion = 0;
         String r;
@@ -12,13 +15,13 @@ public class Switch {
         Scanner in = new Scanner(System.in);
 
         Hospital h = new Hospital();
-        ControllerHospital c = new ControllerHospital();
+        DBHospital db = new DBHospital();
         try {
             do {
                 Menus.menuHospital();
                 System.out.print("Indique una opción: ");
                 opcion = in.nextInt();
-                c.conectar();
+                db.conectar();
 
                 switch (opcion) {
                     case 1:
@@ -26,41 +29,46 @@ public class Switch {
                         r = PedirDatos.pedirString("Diga el nombre que desea usar: ");
 
                         h.setNombre(r);
-                        c.actualizarNombreHospital(h);
+                        db.actualizarNombreHospital(h);
                         break;
                     case 2:
                         h.setId(PedirDatos.pedirId());
                         r = PedirDatos.pedirString("Diga el dirección que desea usar: ");
                         h.setDireccion(r);
-                        c.actualizarDireccionHospital(h);
+                        db.actualizarDireccionHospital(h);
                         break;
                     case 3:
                         h.setId(PedirDatos.pedirId());
                         r = PedirDatos.pedirString("Diga el telefono que desea usar: ");
                         h.setTelefono(r);
-                        c.actualizarTelefonoHospital(h);
+                        db.actualizarTelefonoHospital(h);
                         break;
                     case 4:
                         h.setId(PedirDatos.pedirId());
                         r = PedirDatos.pedirString("Diga la localidad que desea usar: ");
                         h.setLocalidad(r);
-                        c.actualizarLocalidadHospital(h);
+                        db.actualizarLocalidadHospital(h);
                         break;
                     case 5:
                         h.setId(PedirDatos.pedirId());
                         h = PedirDatos.pedirAllStrings(h);
-                        c.actualizarHospital(h);
+                        db.actualizarHospital(h);
                         break;
                     case 6:
                         h = PedirDatos.pedirAllStrings(h);
-                        c.añadirHospital(h);
+                        db.añadirHospital(h);
                         break;
                     case 7:
                         h.setId(PedirDatos.pedirId());
-                        c.eliminarHospital(h);
+                        db.eliminarHospital(h);
                         break;
                     case 8:
-                        c.verHospitales();
+                        System.out.println("");
+                        System.out.println("---------HOSPITALES---------");
+                        db.obtener();
+                        break;
+                    default:
+                        System.out.println("Hasta la próxima");
                         break;
                 }
             } while (opcion != 9);
@@ -78,51 +86,55 @@ public class Switch {
         Scanner in = new Scanner(System.in);
 
         Doctor d = new Doctor();
-        ControllerDoctor c = new ControllerDoctor();
+        DBDoctor db = new DBDoctor();
         try {
             do {
+                db.conectar();
                 Menus.menuDoctor();
                 System.out.print("Indique una opción: ");
                 opcion = in.nextInt();
-                c.conectar();
 
                 switch (opcion) {
                     case 1:
                         d.setId(PedirDatos.pedirId());
                         r = PedirDatos.pedirString("Diga el nombre que desea usar: ");
-
                         d.setNombre(r);
-                        c.actualizarNombreDoctor(d);
+                        db.actualizarNombreDoctor(d);
                         break;
                     case 2:
                         d.setId(PedirDatos.pedirId());
                         r = PedirDatos.pedirString("Diga el Telefono que desea usar: ");
                         d.setTelefono(r);
-                        c.actualizarTelefonoDoctor(d);
+                        db.actualizarTelefonoDoctor(d);
                         break;
                     case 3:
                         d.setId(PedirDatos.pedirId());
                         r = PedirDatos.pedirString("Diga la Especialidad que desea usar: ");
-                        d.setTelefono(r);
-                        c.actualizarEspecialidad(d);
+                        d.setEspecialidad(r);
+                        db.actualizarEspecialidad(d);
                         break;
                     case 4:
                         d.setId(PedirDatos.pedirId());
                         r = PedirDatos.pedirString("Diga el id del Hospital que desea usar: ");
-                        int id_hospital = Integer.parseInt(r);
-                        d.setIdHospital(id_hospital);
-                        c.actualizarID_Hospital(d);
+                        int idHospital = Integer.parseInt(r);
+                        d.setIdHospital(idHospital);
+                        db.actualizarIDHospital(d);
                         break;
                     case 5:
                         d = PedirDatos.pedirAllStringsDoctor(d);
-                        c.añadirDoctor(d);
+                        db.añadirDoctor(d);
                         break;
                     case 6:
                         d.setId(PedirDatos.pedirId());
-                        c.eliminarDoctor(d);
+                        db.eliminarDoctor(d);
                         break;
                     case 7:
-                        c.verDoctores();
+                        System.out.println("");
+                        System.out.println("---------DOCTORES---------");
+                        db.obtener();
+                        break;
+                    default:
+                        System.out.println("Hasta la próxima");
                         break;
                 }
             } while (opcion != 8);

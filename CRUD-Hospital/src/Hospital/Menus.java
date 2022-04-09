@@ -1,6 +1,9 @@
 package Hospital;
 
 public class Menus {
+    
+    private Menus(){
+    }
 
     public static void menuHospital() {
 
