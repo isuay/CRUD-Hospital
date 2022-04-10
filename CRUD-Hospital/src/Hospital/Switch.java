@@ -3,11 +3,21 @@ package Hospital;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+/**
+ *
+ * @author Jose, Iris
+ */
 public class Switch {
 
+    /**
+     * Constructor por defecto.
+     */
     private Switch() {
     }
 
+    /**
+     * Método que interactúa con el menú del hospital, los métodos del DBHospital y de PedirDatos.
+     */
     public static void switchHospital() {
         int opcion = 0;
         String r;
@@ -18,7 +28,6 @@ public class Switch {
         DBHospital db = new DBHospital();
         try {
             do {
-                Conexion.conectar();
                 Menus.menuHospital();
                 System.out.print("Indique una opción: ");
                 opcion = in.nextInt();
@@ -63,12 +72,10 @@ public class Switch {
                         db.eliminarHospital(h);
                         break;
                     case 8:
-                        System.out.println("");
-                        System.out.println("---------HOSPITALES---------");
+                        System.out.println("\n---------HOSPITALES---------");
                         db.obtener();
                         break;
                     default:
-                        System.out.println("Hasta la próxima");
                         break;
                 }
             } while (opcion != 9);
@@ -79,6 +86,9 @@ public class Switch {
         }
     }
 
+    /**
+     * Método que interactúa con el menú de los doctores, los métodos del DBDoctor y de PedirDatos.
+     */
     public static void switchDoctor() {
         int opcion = 0;
         String r;
@@ -89,7 +99,6 @@ public class Switch {
         DBDoctor db = new DBDoctor();
         try {
             do {
-                Conexion.conectar();
                 Menus.menuDoctor();
                 System.out.print("Indique una opción: ");
                 opcion = in.nextInt();
@@ -103,13 +112,13 @@ public class Switch {
                         break;
                     case 2:
                         d.setId(PedirDatos.pedirId());
-                        r = PedirDatos.pedirString("Diga el Telefono que desea usar: ");
+                        r = PedirDatos.pedirString("Diga el telefono que desea usar: ");
                         d.setTelefono(r);
                         db.actualizarTelefonoDoctor(d);
                         break;
                     case 3:
                         d.setId(PedirDatos.pedirId());
-                        r = PedirDatos.pedirString("Diga la Especialidad que desea usar: ");
+                        r = PedirDatos.pedirString("Diga la especialidad que desea usar: ");
                         d.setEspecialidad(r);
                         db.actualizarEspecialidad(d);
                         break;
@@ -129,19 +138,17 @@ public class Switch {
                         db.eliminarDoctor(d);
                         break;
                     case 7:
-                        System.out.println("");
-                        System.out.println("---------DOCTORES---------");
+                        System.out.println("\n---------DOCTORES---------");
                         db.obtener();
                         break;
                     default:
-                        System.out.println("Hasta la próxima");
                         break;
                 }
             } while (opcion != 8);
         } catch (SQLException ex) {
             System.out.println(ex);
         } catch (Exception e) {
-            System.err.println(e);
+            System.out.println(e);
         }
     }
 }

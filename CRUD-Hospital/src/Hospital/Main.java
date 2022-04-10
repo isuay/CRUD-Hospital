@@ -2,6 +2,10 @@ package Hospital;
 
 import java.util.*;
 
+/**
+ *
+ * @author Jose, Iris
+ */
 public class Main {
 
     public static void main(String[] args) {
@@ -19,7 +23,7 @@ public class Main {
                     Switch.switchDoctor();
                     break;
                 default:
-                    System.out.println("Hasta la próxima");
+                    System.out.println("\nHasta la próxima");
                     break;
             }
         } while (opcion != 3);
